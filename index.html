@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="font-awesome-4.7.0/css/font-awesome.min.css" />
+		<link rel="stylesheet" href="css/style.css">
+		<title>项目名称</title>
+	</head>
+	<body>
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="#"><i class="">LOGO</i> 项目名称</a>
+				</div>
+				<p class="navbar-text navbar-right"></p>
+			</div>
+		</nav>
+		<main id="main">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-6 col-md-4" v-for="(item, index) in dataList">
+						<a :href="item.detUrl">
+							<figure class="thumbnail">
+								<div class="img-box" role="img" :style="{ 'background': `url(${ item.imgUrl }) no-repeat center center` }"></div>
+								<figcaption class="caption">
+									<h3>第{{ NumberToChinese(index+1) }}课</h3>
+									<h4>{{ item.title }}</h4>
+									<button class="btn btn-primary" @click.prevent="isLike(index)"><i :class="dataList[index].like? 'fa fa-star' : 'fa fa-star-o'"></i> 收藏</button>
+								</figcaption>
+							</figure>
+						</a>
+					</div>
+				</div>
+			</div>
+		</main>
+		<script src="js/jquery.min.js"></script>
+		<!-- <script src="js/numToChinese.js"></script> -->
+		<script src="js/vue.js"></script>
+		<script>
+			new Vue({
+				el: '#main',
+				data() {
+					return {
+						dataList: [{
+								title: '课程名称',
+								detUrl: 'subpage.html',
+								imgUrl: 'img/picture.jpg',
+								like: false
+							},
+							{
+								title: '课程名称',
+								detUrl: 'subpage.html',
+								imgUrl: 'img/picture.jpg',
+								like: false
+							},
+							{
+								title: '课程名称',
+								detUrl: 'subpage.html',
+								imgUrl: 'img/picture.jpg',
+								like: false
+							},
+							{
+								title: '课程名称',
+								detUrl: 'subpage.html',
+								imgUrl: 'img/picture.jpg',
+								like: false
+							},
+							{
+								title: '课程名称',
+								detUrl: 'subpage.html',
+								imgUrl: 'img/picture.jpg',
+								like: false
+							},
+							{
+								title: '课程名称',
+								detUrl: 'subpage.html',
+								imgUrl: 'img/picture.jpg',
+								like: false
+							},
+							{
+								title: '课程名称',
+								detUrl: 'subpage.html',
+								imgUrl: 'img/picture.jpg',
+								like: false
+							},
+							{
+								title: '课程名称',
+								detUrl: 'subpage.html',
+								imgUrl: 'img/picture.jpg',
+								like: false
+							},
+							{
+								title: '课程名称',
+								detUrl: 'subpage.html',
+								imgUrl: 'img/picture.jpg',
+								like: false
+							},
+							{
+								title: '课程名称',
+								detUrl: 'subpage.html',
+								imgUrl: 'img/picture.jpg',
+								like: false
+							},
+							{
+								title: '课程名称',
+								detUrl: 'subpage.html',
+								imgUrl: 'img/picture.jpg',
+								like: false
+							},
+							{
+								title: '课程名称',
+								detUrl: 'subpage.html',
+								imgUrl: 'img/picture.jpg',
+								like: false
+							}
+						]
+					}
+				},
+				methods: {
+					SectionToChinese(section){
+						var chnNumChar = ["零","一","二","三","四","五","六","七","八","九"];
+						var chnUnitChar = ["","十","百","千"];
+						var strIns = '', chnStr = '';
+						var unitPos = 0;
+						var zero = true;
+						while(section > 0){
+							var v = section % 10;
+							if(v === 0){
+								if(!zero){
+									zero = true;
+									chnStr = chnNumChar[v] + chnStr;
+								}
+							}else{
+								zero = false;
+								strIns = chnNumChar[v];
+								strIns += chnUnitChar[unitPos];
+								chnStr = strIns + chnStr;
+							}
+							unitPos++;
+							section = Math.floor(section / 10);
+						}
+						return chnStr;
+					},
+					
+					NumberToChinese(num){  
+						var chnNumChar = ["零","一","二","三","四","五","六","七","八","九"];
+						var chnUnitSection = ["","万","亿","万亿","亿亿"];
+						var unitPos = 0;  
+						var strIns = '', chnStr = '';  
+						var needZero = false;  
+						   
+						if(num === 0){  
+							return chnNumChar[0];  
+						}  
+						   
+						while(num > 0){  
+							var section = num % 10000;  
+							if(needZero){  
+							  chnStr = chnNumChar[0] + chnStr;  
+							}  
+							strIns = this.$options.methods.SectionToChinese(section);  
+							strIns += (section !== 0) ? chnUnitSection[unitPos] : chnUnitSection[0];  
+							chnStr = strIns + chnStr;  
+							needZero = (section < 1000) && (section > 0);  
+							num = Math.floor(num / 10000);  
+							unitPos++;  
+						}  
+						return chnStr;  
+					},
+					
+					isLike(index) {
+						this.dataList[index].like = !this.dataList[index].like;
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,68 @@
+@main-color: #222;
+#main {
+	margin-top: 75px;
+	a {
+		// display: block;
+		text-decoration: none;
+		figure {
+			display: flow-root;
+			.img-box {
+				// display: flow-root;
+				width: 100%;
+				height: 200px;
+				background-size: auto 100% !important;
+				transition: all .3s;
+			}
+			
+			figcaption {
+				h4 {
+					color: #bbb;
+				}
+				button {
+					float: right;
+					margin-bottom: 8px;
+					&.btn-primary{
+						background-color: @main-color;
+						&:hover {
+							background-color: #495561;
+						}
+					}
+				}
+			}
+		}
+		&:hover {
+			figure {
+				box-shadow: 0 2px 5px 3px #ccc;
+			}
+			.img-box {
+				background-size: auto 110% !important;
+			}
+		}
+	}
+}
+
+// 大屏幕（大桌面显示器，小于等于 1200px）
+@media (max-width: 1200px) { 
+	
+}
+// 中等屏幕（桌面显示器，小于等于 992px）
+@media (max-width: 992px) { 
+	
+}
+// 小屏幕（平板，小于等于 768px）
+@media (max-width: 768px) { 
+	#main {
+		a {
+			figure {
+				.img-box {
+					height: 300px;
+				}
+				figcaption {
+					h4 {
+						
+					}
+				}
+			}
+		}
+	}
+}

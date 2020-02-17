@@ -1,0 +1,68 @@
+nav {
+	background-color: #ffffcc !important;
+}
+
+nav p {
+	margin-right: 1px !important;
+	font-size: 80%;
+	color: #ccc !important;
+}
+
+.show-box {
+	display: grid;
+	grid-gap: 8px;
+}
+
+.show-box img {
+	width: 100%;
+	border-radius: 5px;
+}
+
+.panel-default>.panel-heading {
+	background-color: #ffffcc;
+}
+
+.btn-primary {
+	color: #000000;
+	background-color: #ffffcc;
+	border-color: #ccc;
+}
+
+.panel-body figure {
+	display: grid;
+	grid-template-columns: 1fr 2fr;
+	grid-gap: 8px;
+}
+.panel-body figure img {
+	border-radius: 0;
+}
+
+.panel-body figure p {
+	color: #ccc;
+}
+
+.show-box a {
+	text-decoration: none;
+	display: block;
+}
+
+/* 小屏幕（平板，大于等于 768px） */
+@media (min-width: 300px) { 
+	.show-box {
+		grid-template-columns: repeat(1, 1fr);
+	}
+}
+
+/* 中等屏幕（桌面显示器，大于等于 992px） */
+@media (min-width: 700px) { 
+	.show-box {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+/* 大屏幕（大桌面显示器，大于等于 1200px） */
+@media (min-width: 1100px) { 
+	.show-box {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
